@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DarkSite - Кибербезопасность и этичный хакинг</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #00ff00;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            border-bottom: 2px solid #00ff00;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            text-align: center;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #00ff00; }
+            to { text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; }
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .nav-btn {
+            background: rgba(0, 255, 0, 0.1);
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 255, 0, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #00ff00;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #00ff88;
+        }
+
+        .section {
+            padding: 80px 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #00ff00;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff00;
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+        }
+
+        .card h3 {
+            color: #00ff00;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-item {
+            background: rgba(0, 255, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #00ff00;
+        }
+
+.login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #00ff00;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #00ff00;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #00ff00, #00cc00);
+            color: #000;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #00cc00, #00ff00);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+
+        .telegram-btn {
+            display: inline-block;
+            background: #0088cc;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .telegram-btn:hover {
+            background: #006699;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 2px solid #00ff00;
+            margin-top: 80px;
+        }
+
+        .hacker-text {
+            animation: typing 4s steps(40) 1s 1 normal both;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .section h2 { font-size: 2em; }
+            nav { flex-direction: column; align-items: center; }
+            .nav-btn { width: 200px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="matrix-bg" id="matrix"></canvas>
+
+    <header>
+        <div class="container">
+            <div class="logo">DarkSite</div>
+            <nav>
+                <a href="#home" class="nav-btn">Главная</a>
+                <a href="#hacking" class="nav-btn">Основы хакинга</a>
+                <a href="#security" class="nav-btn">Кибербезопасность</a>
+                <a href="#tools" class="nav-btn">Инструменты</a>
+                <a href="#register" class="nav-btn">Регистрация</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1 class="hacker-text">Добро пожаловать в DarkSite</h1>
+            <p>Исследуй мир кибербезопасности, этичного хакинга и цифровой защиты. Узнай, что опасно в сети и как оставаться в безопасности.</p>
+            <a href="https://t.me/DarkSiteUSI" class="telegram-btn" target="_blank">📢 Наш Telegram-канал</a>
+        </div>
+    </section>
+
+    <section id="hacking" class="section">
+        <div class="container">
+            <h2>🧠 Основы этичного хакинга</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Что такое этичный хакинг?</h3>
+                    <p>Легальное тестирование систем безопасности с разрешения владельца. Изучение уязвимостей для их последующего устранения.</p>
+
+</div>
+                <div class="card">
+                    <h3>Этапы пентеста</h3>
+                    <p>1. Разведка → 2. Сканирование → 3. Получение доступа → 4. Сохранение доступа → 5. Анализ и отчет</p>
+                </div>
+                <div class="card">
+                    <h3>Необходимые навыки</h3>
+                    <p>Сетевые технологии, программирование (Python, C++), базы данных, криптография, понимание ОС Linux/Windows</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="security" class="section">
+        <div class="container">
+            <h2>🛡️ Кибербезопасность</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Основные угрозы</h3>
+                    <p>• Фишинг и социальная инженерия<br>• DDoS-атаки<br>• SQL-инъекции<br>• XSS/CSRF атаки<br>• Вредоносное ПО</p>
+                </div>
+                <div class="card">
+                    <h3>Методы защиты</h3>
+                    <p>• Двухфакторная аутентификация<br>• Регулярное обновление ПО<br>• Брандмауэры и антивирусы<br>• Шифрование данных<br>• VPN и прокси</p>
+                </div>
+                <div class="card">
+                    <h3>Опасные сайты</h3>
+                    <p>Избегайте: фишинговых сайтов, небезопасных HTTP-сайтов, подозрительных файлообменников, сайтов с пиратским контентом</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tools" class="section">
+        <div class="container">
+            <h2>🛠️ Хакерские инструменты</h2>
+            <div class="tools-grid">
+                <div class="tool-item">
+                    <h3>Nmap</h3>
+                    <p>Сканер сетей и портов</p>
+                </div>
+                <div class="tool-item">
+                    <h3>Metasploit</h3>
+                    <p>Фреймворк для разработки эксплойтов</p>
+                </div>
+                <div class="tool-item">
+                    <h3>Wireshark</h3>
+                    <p>Анализатор сетевого трафика</p>
+                </div>
+                <div class="tool-item">
+                    <h3>Burp Suite</h3>
+                    <p>Веб-сканер уязвимостей</p>
+                </div>
+                <div class="tool-item">
+                    <h3>John the Ripper</h3>
+                    <p>Взлом паролей</p>
+                </div>
+                <div class="tool-item">
+                    <h3>Aircrack-ng</h3>
+                    <p>Взлом Wi-Fi сетей</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="register" class="section">
+        <div class="container">
+            <h2>🔐 Регистрация в сообществе</h2>
+            <div class="login-form">
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="username">Придумайте никнейм:</label>
+                        <input type="text" id="username" required placeholder="Введите ваш уникальный ник">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Придумайте пароль:</label>
+                        <input type="password" id="password" required placeholder="Минимум 8 символов">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email (опционально):</label>
+                        <input type="email" id="email" placeholder="для восстановления доступа">
+                    </div>
+                    <button type="submit" class="btn">Создать аккаунт</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>🌐 DarkSite - Сообщество кибербезопасности © 2024</p>
+            <p>⚠️ Вся информация предоставляется в образовательных целях</p>
+            <p>🔗 <a href="https://t.me/DarkSiteUSI" style="color: #00ff00;">Наш Telegram-канал</a></p>
+        </div>
+    </footer>
+
+<script>
+        // Matrix background animation
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const letters = '01010101黑客安全网络安全黑客安全01010101';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        
+        const drops = [];
+        for(let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ff00';
+            ctx.font = ${fontSize}px monospace;
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 33);
+        
+        // Form validation
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if(password.length < 8) {
+                alert('Пароль должен содержать минимум 8 символов!');
+                return;
+            }
+            
+            alert(Аккаунт создан!\nНик: ${username}\nДобро пожаловать в DarkSite!);
+            
+            // Clear form
+            this.reset();
+        });
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Responsive canvas
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
